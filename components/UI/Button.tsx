@@ -1,7 +1,7 @@
 import React from "react";
 
 interface ButtonI {
-  children: React.ReactNode;
+  children: string;
   className: string;
   label: string;
 }
