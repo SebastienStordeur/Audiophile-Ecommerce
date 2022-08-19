@@ -22,13 +22,13 @@ const Footer: React.FC = () => {
           <Link href="/">Earphones</Link>
         </li>
       </ul>
-      <p className="my-12 opacity-50 font-medium text-[15px] leading-6">
+      <p className="my-12 opacity-50 font-medium text-[15px] leading-6 mix-blend-normal">
         Audiophile is an all in one stop to fulfill your audio needs. Were a
         small team of music lovers and sound specialists who are devoted to
         helping you get the most out of personal audio. Come and visit our demo
         facility - we’re open 7 days a week.
       </p>
-      <p className="opacity-50 font-bold text-[15px]">
+      <p className="opacity-50 font-bold text-[15px] mix-blend-normal">
         Copyright 2021. All Rights Reserved
       </p>
     </footer>

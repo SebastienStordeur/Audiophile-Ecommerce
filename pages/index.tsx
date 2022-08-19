@@ -7,6 +7,7 @@ import Header from "../components/Layout/Header/Header";
 import Footer from "../components/Layout/Footer/Footer";
 import axios from "axios";
 import Main from "../components/Layout/Main/Main";
+import BestGear from "../components/Cards/BestGear";
 
 const Home: NextPage = () => {
   /*   useEffect(() => {
@@ -23,6 +24,7 @@ const Home: NextPage = () => {
       <Header />
       <Main>
         <h1></h1>
+        <BestGear />
       </Main>
       <Footer />
     </React.Fragment>
