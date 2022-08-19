@@ -37,14 +37,18 @@ const Headphones: React.FC = () => {
                 description: {
                   stringValue: string;
                 };
+                image: {
+                  stringValue: string;
+                };
               };
             }) => {
-              console.log(headphone.fields.name);
+              console.log(headphone.fields.image.stringValue);
               return (
                 <ProductCard
                   key={headphone.name.split("/").pop()}
                   name={headphone.fields.name.stringValue}
                   description={headphone.fields.description.stringValue}
+                  cover={`/${headphone.fields.image.stringValue}`}
                 />
               );
             }
