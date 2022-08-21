@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type SliceState = {};
+type SliceState = {
+  
+};
 
 const initialState = {};
 

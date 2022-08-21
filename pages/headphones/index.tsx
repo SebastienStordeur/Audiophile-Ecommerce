@@ -28,7 +28,7 @@ const Headphones: React.FC = () => {
       <Main>
         <Section className="grid grid-cols-1 gap-28">
           {headphones.map(
-            (headphone: {
+            (headphone: /* create interface */ {
               name: string;
               fields: {
                 name: {

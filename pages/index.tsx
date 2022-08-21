@@ -8,6 +8,7 @@ import Footer from "../components/Layout/Footer/Footer";
 import axios from "axios";
 import Main from "../components/Layout/Main/Main";
 import BestGear from "../components/Cards/BestGear";
+import SignupForm from "../components/Forms/SignupForm";
 
 const Home: NextPage = () => {
   /*   useEffect(() => {

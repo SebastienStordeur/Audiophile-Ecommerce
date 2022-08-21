@@ -7,7 +7,7 @@ interface CardI {
 
 const Card: React.FC<CardI> = (props: CardI) => {
   return (
-    <article className={`w-11/12 text-center mx-auto ${props.className || ""}`}>
+    <article className={`w-11/12 max-w-[1111px] text-center mx-auto ${props.className || ""}`}>
       {props.children}
     </article>
   );

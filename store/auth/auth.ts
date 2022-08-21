@@ -3,11 +3,19 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 type SliceState = {
   token: string | null;
   isAuthenticated: boolean;
+  user: {
+    displayableName: string | null;
+    email: string | null;
+  }
 };
 
 const initialState: SliceState = {
   token: null,
   isAuthenticated: false,
+    user: {
+      displayableName: null, 
+      email: null
+    }
 };
 
 const authSlice = createSlice({
@@ -21,6 +29,8 @@ const authSlice = createSlice({
       //store the token
       state.token = action.payload; //.token
       state.isAuthenticated = true;
+
+      //store name, email in redux storagetrue
       //store data user
     },
     logout(state) {
