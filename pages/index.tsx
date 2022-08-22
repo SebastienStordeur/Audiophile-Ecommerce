@@ -9,6 +9,8 @@ import axios from "axios";
 import Main from "../components/Layout/Main/Main";
 import BestGear from "../components/Cards/BestGear";
 import SignupForm from "../components/Forms/SignupForm";
+import CategoryCard from "../components/Cards/CategoryCard";
+import SubHeader from "../components/SubHeaders/SubHeader";
 
 const Home: NextPage = () => {
   /*   useEffect(() => {
@@ -24,7 +26,13 @@ const Home: NextPage = () => {
     <React.Fragment>
       <Header />
       <Main>
-        <h1></h1>
+        <SubHeader />
+        <CategoryCard
+          title="headphones"
+          image="/assets/shared/mobile/image-xx99-mark-one-headphones.jpg"
+        />
+        <CategoryCard title="speakers" />
+        <CategoryCard title="earphones" />
         <BestGear />
       </Main>
       <Footer />

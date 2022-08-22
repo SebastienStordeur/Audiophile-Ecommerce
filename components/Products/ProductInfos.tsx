@@ -19,7 +19,7 @@ interface ProductInfosI {
     features: {
       stringValue: string;
     };
-    box: string[];
+    box?: any;
   };
 }
 

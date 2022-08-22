@@ -6,6 +6,7 @@ import Header from "../../components/Layout/Header/Header";
 import Footer from "../../components/Layout/Footer/Footer";
 import Main from "../../components/Layout/Main/Main";
 import ProductInfos from "../../components/Products/ProductInfos";
+import BestGear from "../../components/Cards/BestGear";
 
 const Product: React.FC = () => {
   const router = useRouter();
@@ -27,7 +28,8 @@ const Product: React.FC = () => {
     <React.Fragment>
       <Header />
       <Main>
-        <ProductInfos data={product} />
+        {product && <ProductInfos data={product} />}
+        <BestGear />
       </Main>
       <Footer />
     </React.Fragment>
