@@ -8,21 +8,30 @@ import Main from "../../components/Layout/Main/Main";
 import ProductInfos from "../../components/Products/ProductInfos";
 import BestGear from "../../components/Cards/BestGear";
 
+type ProductType = {
+  price: { integerValue: number };
+  name: { stringValue: string };
+  description: { stringValue: string };
+  features: { stringValue: string };
+};
+
 const Product: React.FC = () => {
   const router = useRouter();
   const { productId } = router.query;
-  const [product, setProduct] = useState({});
-  console.log(productId);
-  //useEffect
+  const [product, setProduct] = useState<ProductType>();
+
   useEffect(() => {
     axios
       .get(
         `https://firestore.googleapis.com/v1/projects/audiophile-ecommerce-74670/databases/(default)/documents/headphones/${productId}`
       )
-      .then((res) => setProduct(res.data.fields));
+      .then((res) => {
+        console.log("response", res.data.fields);
+        setProduct(res.data.fields);
+      });
   }, [productId]);
 
-  console.log(product);
+  console.log("product", product);
 
   return (
     <React.Fragment>

@@ -1,37 +1,39 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type SliceState = {
-  token: string | null;
   isAuthenticated: boolean;
   user: {
+    id: string | null;
     displayableName: string | null;
     email: string | null;
-  }
+  };
 };
 
 const initialState: SliceState = {
-  token: null,
   isAuthenticated: false,
-    user: {
-      displayableName: null, 
-      email: null
-    }
+  user: {
+    id: null,
+    displayableName: null,
+    email: null,
+  },
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    login(state, action: PayloadAction<string>) {
-      //localstore token
-      localStorage.setItem("token", action.payload); //payload.token
-      //localstore date
-      //store the token
-      state.token = action.payload; //.token
-      state.isAuthenticated = true;
+    login(state, action: PayloadAction<any>) {
+      const payload = action.payload;
 
-      //store name, email in redux storagetrue
-      //store data user
+      localStorage.setItem("token", payload.token); //payload.token
+      //localstore date
+      state.isAuthenticated = true;
+      state.user.id = payload.id;
+      state.user.displayableName = payload.displayName;
+      state.user.email = payload.email;
+    },
+    checkIfTokenExists(state) {
+      state.isAuthenticated = true;
     },
     logout(state) {
       localStorage.removeItem("token");

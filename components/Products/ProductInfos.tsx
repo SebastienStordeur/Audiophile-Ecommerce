@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
+import { useDispatch } from "react-redux";
 
 interface ProductInfosI {
   data: {
@@ -13,17 +14,22 @@ interface ProductInfosI {
     description: {
       stringValue: string;
     };
-    image: {
+    image?: {
       stringValue: string;
     };
     features: {
-      stringValue: string;
+      arrayValue: {
+        values: { stringValue: string }[];
+      };
     };
-    box?: any;
+    /*     box?: any;
+    id: { stringValue: string }; */
   };
 }
 
 const ProductInfos: React.FC<ProductInfosI> = (props) => {
+  const dispatch = useDispatch();
+  console.log("product props", props.data.features.arrayValue.values);
   const [quantity, setQuantity] = useState<number>(1);
 
   const changeHandler = (event: React.FormEvent<HTMLInputElement>) => {};
@@ -38,14 +44,14 @@ const ProductInfos: React.FC<ProductInfosI> = (props) => {
       <p className="my-6 font-medium text-[15px] leading-6 opacity-50">
         {props.data.description.stringValue}
       </p>
-
       <p className="font-bold leading-6 text-lg">{`$ ${props.data.price.integerValue}`}</p>
       <div className="flex mt-8 mb-20">
         <Input
           type="number"
-          className=""
+          className="w-[120px] h-12 px-2 bg-grey text-center font-bold text-[13px]"
           id="quantity"
-          value={quantity} /* onChange={changeHandler} */
+          value={quantity}
+          onChange={changeHandler}
         />
         <Button className="bg-brown text-white" label="Add do cart">
           Add to cart
@@ -53,9 +59,14 @@ const ProductInfos: React.FC<ProductInfosI> = (props) => {
       </div>
 
       <h3 className="font-bold text-2xl uppercase mb-6">Features</h3>
-      <p className="text-[15px] font-medium leading-6 opacity-50">
-        {props.data.features.stringValue}
-      </p>
+      {props.data.features.arrayValue.values.map((feature) => {
+        console.log("feature", feature.stringValue);
+        return (
+          <p className="" key={Math.random().toString()}>
+            {feature.stringValue}
+          </p>
+        );
+      })}
 
       <h3 className="font-bold text-2xl uppercase mb-6 mt-20">In the box</h3>
     </section>

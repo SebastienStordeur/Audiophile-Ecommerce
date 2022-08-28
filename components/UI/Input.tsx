@@ -5,16 +5,19 @@ interface InputI {
   className?: string;
   id: string;
   value: string | number;
+  onChange: any;
 }
 
-const Input: React.FC<InputI> = (props: InputI) => {
+const Input: React.FC<InputI> = (props) => {
   return (
     <input
       type={props.type || "text"}
       id={props.id}
-      className={`w-11/12 h-8`}
+      className={` ${props.className || ""}`}
+      value={props.value}
+      onChange={props.onChange}
     />
   );
 };
 
-export default Input;
+export default React.memo(Input);

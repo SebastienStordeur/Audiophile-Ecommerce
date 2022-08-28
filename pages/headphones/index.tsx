@@ -40,6 +40,9 @@ const Headphones: React.FC = () => {
                 image: {
                   stringValue: string;
                 };
+                id: {
+                  stringValue: string;
+                };
               };
             }) => {
               console.log(headphone.fields.image.stringValue);
@@ -49,6 +52,7 @@ const Headphones: React.FC = () => {
                   name={headphone.fields.name.stringValue}
                   description={headphone.fields.description.stringValue}
                   cover={`/${headphone.fields.image.stringValue}`}
+                  id={headphone.fields.id.stringValue}
                 />
               );
             }

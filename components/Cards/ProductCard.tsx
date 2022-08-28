@@ -1,16 +1,19 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 
 interface CategoryCardI {
+  id: string;
   name: string;
   description: string;
-  cover?: string;
+  cover?: any;
 }
 
-const CategoryCard: React.FC<CategoryCardI> = (props: CategoryCardI) => {
+const CategoryCard: React.FC<CategoryCardI> = (props) => {
+  console.log(props);
   return (
     <Card>
       <div className="w-full h-[352px] text-center bg-light-grey">
@@ -24,7 +27,9 @@ const CategoryCard: React.FC<CategoryCardI> = (props: CategoryCardI) => {
         {props.description}
       </p>
       <Button className="bg-brown text-white" label="See product button">
-        See Product
+        <Link href={props.id} passHref>
+          See Product
+        </Link>
       </Button>
     </Card>
   );
