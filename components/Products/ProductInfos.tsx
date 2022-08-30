@@ -2,34 +2,29 @@ import React, { useState } from "react";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 import { useDispatch } from "react-redux";
+import Image from "next/image";
 
 interface ProductInfosI {
   data: {
-    price: {
-      integerValue: number;
-    };
-    name: {
-      stringValue: string;
-    };
-    description: {
-      stringValue: string;
-    };
-    image?: {
-      stringValue: string;
-    };
-    features: {
-      arrayValue: {
-        values: { stringValue: string }[];
-      };
-    };
-    /*     box?: any;
-    id: { stringValue: string }; */
+    id: string;
+    name: string;
+    price: number;
+    description: string;
+    features: [
+      {
+        paragraph: string;
+      }
+    ];
+
+    box: { quantity: number; name: string }[];
+    product_image: string;
+    images: { image: string }[];
   };
 }
 
 const ProductInfos: React.FC<ProductInfosI> = (props) => {
   const dispatch = useDispatch();
-  console.log("product props", props.data.features.arrayValue.values);
+  /* console.log("product props", props.data.features.arrayValue.values); */
   const [quantity, setQuantity] = useState<number>(1);
 
   const changeHandler = (event: React.FormEvent<HTMLInputElement>) => {};
@@ -37,14 +32,21 @@ const ProductInfos: React.FC<ProductInfosI> = (props) => {
   const addToCartHandler = () => {};
 
   return (
-    <section className="w-11/12 mx-auto">
-      <h2 className=" font-bold text-[28px] leading-9 uppercase">
-        {props.data.name.stringValue}
+    <section className="w-auto mx-6">
+      <div className="relative w-full h-80 mt-6">
+        <Image
+          src={props.data.product_image}
+          alt={props.data.name}
+          layout="fill"
+        />
+      </div>
+      <h2 className=" font-bold text-[28px] leading-9 uppercase mt-6">
+        {props.data.name}
       </h2>
       <p className="my-6 font-medium text-[15px] leading-6 opacity-50">
-        {props.data.description.stringValue}
+        {props.data.description}
       </p>
-      <p className="font-bold leading-6 text-lg">{`$ ${props.data.price.integerValue}`}</p>
+      <p className="font-bold leading-6 text-lg">{`$ ${props.data.price}`}</p>
       <div className="flex mt-8 mb-20">
         <Input
           type="number"
@@ -58,17 +60,43 @@ const ProductInfos: React.FC<ProductInfosI> = (props) => {
         </Button>
       </div>
 
-      <h3 className="font-bold text-2xl uppercase mb-6">Features</h3>
-      {props.data.features.arrayValue.values.map((feature) => {
-        console.log("feature", feature.stringValue);
+      <h3 className="font-bold text-2xl uppercase mb">Features</h3>
+      {props.data.features.map((feature) => {
         return (
-          <p className="" key={Math.random().toString()}>
-            {feature.stringValue}
+          <p
+            key={Math.random().toString()}
+            className="mt-6 font-medium text-[15px] leading-6 opacity-50"
+          >
+            {feature.paragraph}
           </p>
         );
       })}
-
       <h3 className="font-bold text-2xl uppercase mb-6 mt-20">In the box</h3>
+      <ul>
+        {props.data.box.map((element) => {
+          return (
+            <li
+              key={Math.random().toString()}
+              className="text-[15px] leading-6"
+            >
+              <span className="text-brown font-bold mr-6">{`${element.quantity}x`}</span>
+              <span className="font-medium opacity-50">{element.name}</span>
+            </li>
+          );
+        })}
+      </ul>
+      <div className="mt-20">
+        {props.data.images.map((image) => {
+          return (
+            <div
+              className="relative w-full h-44 mb-5 rounded-lg overflow-hidden"
+              key={Math.random().toString()}
+            >
+              <Image src={image.image} alt="" layout="fill" />
+            </div>
+          );
+        })}
+      </div>
     </section>
   );
 };
