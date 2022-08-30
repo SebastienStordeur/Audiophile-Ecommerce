@@ -10,25 +10,18 @@ interface ProductInfosI {
     name: string;
     price: number;
     description: string;
-    features: [
-      {
-        paragraph: string;
-      }
-    ];
-
+    features: string[];
     box: { quantity: number; name: string }[];
     product_image: string;
-    images: { image: string }[];
+    images: string[];
   };
 }
 
 const ProductInfos: React.FC<ProductInfosI> = (props) => {
   const dispatch = useDispatch();
-  /* console.log("product props", props.data.features.arrayValue.values); */
   const [quantity, setQuantity] = useState<number>(1);
 
   const changeHandler = (event: React.FormEvent<HTMLInputElement>) => {};
-
   const addToCartHandler = () => {};
 
   return (
@@ -67,7 +60,7 @@ const ProductInfos: React.FC<ProductInfosI> = (props) => {
             key={Math.random().toString()}
             className="mt-6 font-medium text-[15px] leading-6 opacity-50"
           >
-            {feature.paragraph}
+            {feature}
           </p>
         );
       })}
@@ -92,7 +85,7 @@ const ProductInfos: React.FC<ProductInfosI> = (props) => {
               className="relative w-full h-44 mb-5 rounded-lg overflow-hidden"
               key={Math.random().toString()}
             >
-              <Image src={image.image} alt="" layout="fill" />
+              <Image src={image} alt="" layout="fill" />
             </div>
           );
         })}
