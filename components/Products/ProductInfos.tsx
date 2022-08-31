@@ -31,6 +31,7 @@ const ProductInfos: React.FC<ProductInfosI> = (props) => {
           src={props.data.product_image}
           alt={props.data.name}
           layout="fill"
+          priority={true}
         />
       </div>
       <h2 className=" font-bold text-[28px] leading-9 uppercase mt-6">
@@ -85,7 +86,7 @@ const ProductInfos: React.FC<ProductInfosI> = (props) => {
               className="relative w-full h-44 mb-5 rounded-lg overflow-hidden"
               key={Math.random().toString()}
             >
-              <Image src={image} alt="" layout="fill" />
+              <Image src={image} alt="" layout="fill" priority={true} />
             </div>
           );
         })}
