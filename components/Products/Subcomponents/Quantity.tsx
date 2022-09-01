@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Input from "../../UI/Input";
 import Button from "../../UI/Button";
 
-const Quantity = () => {
+const Quantity: React.FC = () => {
   const [quantity, setQuantity] = useState<number>(1);
   const changeHandler = (event: React.FormEvent<HTMLInputElement>) => {};
   return (
@@ -14,7 +14,10 @@ const Quantity = () => {
         value={quantity}
         onChange={changeHandler}
       />
-      <Button className="bg-brown text-white" label="Add do cart">
+      <Button
+        className="bg-brown text-white lg:ml-4 hover:bg-opacity-50"
+        label="Add do cart"
+      >
         Add to cart
       </Button>
     </div>

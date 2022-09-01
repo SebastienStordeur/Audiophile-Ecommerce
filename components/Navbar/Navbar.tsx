@@ -1,9 +1,8 @@
 import React from "react";
-import Image from "next/image";
 
 const Navbar: React.FC = () => {
   return (
-    <nav className="flex justify-around items-center w-full text-white">
+    <nav className="flex justify-between items-center w-full max-w-[1110px] mx-auto text-white">
       <svg width="16" height="15" xmlns="http://www.w3.org/2000/svg">
         <g fill="#FFF" fillRule="evenodd">
           <path d="M0 0h16v3H0zM0 6h16v3H0zM0 12h16v3H0z" />

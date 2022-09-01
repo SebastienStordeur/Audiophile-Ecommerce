@@ -4,10 +4,10 @@ import Card from "../UI/Card";
 
 const BestGear: React.FC = () => {
   return (
-    <Section className="my-28 ]">
+    <Section className="my-28 mx-6 md:mx-10 lg:mx-40 max-w-[1110px] xl:mx-auto">
       <Card className="lg:flex lg:flex-row-reverse lg:h-[588px]">
-        <div className="w-full h-[300px] relative rounded-xl overflow-hidden lg:h-full">
-          <picture className="w-full h-full ">
+        <div className="w-full h-[300px] relative rounded-xl overflow-hidden lg:h-full lg:w-full">
+          <picture>
             <source
               srcSet="/assets/shared/desktop/image-best-gear.jpg"
               media="(min-width:1024px)"
