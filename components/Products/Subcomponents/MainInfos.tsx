@@ -8,6 +8,7 @@ interface IMainInfos {
   product_image: string;
   description: string;
   price: number;
+  id: string;
 }
 
 const MainInfos: React.FC<IMainInfos> = (props) => {
@@ -18,6 +19,7 @@ const MainInfos: React.FC<IMainInfos> = (props) => {
         name={props.name}
         description={props.description}
         price={props.price}
+        id={props.id}
       />
     </div>
   );

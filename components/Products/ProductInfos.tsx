@@ -21,10 +21,6 @@ interface ProductInfosI {
 }
 
 const ProductInfos: React.FC<ProductInfosI> = (props) => {
-  const dispatch = useDispatch();
-
-  const addToCartHandler = () => {};
-
   return (
     <section className="w-auto max-w-[1110px] mx-6 md:mx-10 lg:mx-40 xl:mx-auto">
       <MainInfos
@@ -32,6 +28,7 @@ const ProductInfos: React.FC<ProductInfosI> = (props) => {
         description={props.data.description}
         name={props.data.name}
         price={props.data.price}
+        id={props.data.id}
       />
       <section className="md:mt-[120px] lg:flex lg:justify-between">
         <Features features={props.data.features} />

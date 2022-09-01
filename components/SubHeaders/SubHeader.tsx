@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Button from "../UI/Button";
 
-const SubHeader = () => {
+const SubHeader: React.FC = () => {
   return (
     <div className="relative mb-8">
       <div className="relative w-full h-[513px] z-0">

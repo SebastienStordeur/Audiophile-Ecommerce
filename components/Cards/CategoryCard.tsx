@@ -8,10 +8,10 @@ interface CategoryCardI {
   image: string;
 }
 
-const CategoryCard: React.FC<CategoryCardI> = (props: CategoryCardI) => {
+const CategoryCard: React.FC<CategoryCardI> = (props) => {
   return (
-    <Card className="bg-grey h-40">
-      <div className="relative w-80 h-40 mx-auto -mt-9">
+    <Card className="bg-grey h-40 md:w-11/12">
+      <div className="relative w-80 h-40 mx-auto -mt-9 md:w-full">
         <Image
           src={props.image}
           alt={props.title}
@@ -24,13 +24,14 @@ const CategoryCard: React.FC<CategoryCardI> = (props: CategoryCardI) => {
         {props.title}
       </h3>
       <Link href={`/${props.title}`}>
-        <span className="mt-4 text-[13px] uppercase opacity-50 mix-blend-normal">
-          Shop{" "}
-          <span className="relative w-[5px] h-2.5">
+        <span className="mt-4 text-[13px] uppercase opacity-50 mix-blend-normal cursor-pointer">
+          Shop
+          <span className="relative ml-3.5">
             <Image
               src="/assets/shared/desktop/icon-arrow-right.svg"
               alt=""
-              layout="fill"
+              width={5}
+              height={10}
             />
           </span>
         </span>

@@ -8,29 +8,18 @@ import ProductInfos from "../../components/Products/ProductInfos";
 import BestGear from "../../components/Cards/BestGear";
 import data from "../../data/data.json";
 
-type ProductType = {
-  id: string;
-  name: string;
-  price: number;
-  description: string;
-  features: {
-    paragraph: string;
-  };
-  box: { quantity: number; name: string }[];
-  product_image: string;
-  images: string[];
-};
-
 const Product: React.FC = () => {
   const router = useRouter();
   const { productId } = router.query;
   const [product, setProduct] = useState<any>();
-  console.log(productId);
 
   useEffect(() => {
-    setProduct(data.headphones.find((headphone) => headphone.id === productId));
+    setProduct(
+      data.headphones.find((headphone) => headphone.id === productId) ||
+        data.earphones.find((earphone) => earphone.id === productId) ||
+        data.speakers.find((speaker) => speaker.id === productId)
+    );
   }, [productId]);
-  console.log(data.headphones.find((headphone) => headphone.id === productId));
 
   return (
     <React.Fragment>

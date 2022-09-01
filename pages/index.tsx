@@ -9,6 +9,7 @@ import BestGear from "../components/Cards/BestGear";
 import CategoryCard from "../components/Cards/CategoryCard";
 import SubHeader from "../components/SubHeaders/SubHeader";
 import AdsProducts from "../components/Cards/AdsProducts";
+import Categories from "../components/Categories/Categories";
 
 const Home: NextPage = () => {
   return (
@@ -16,7 +17,8 @@ const Home: NextPage = () => {
       <Header />
       <Main>
         <SubHeader />
-        <section className="grid gap-y-16 py-10 px-6">
+        <Categories />
+        {/*         <section className="grid gap-y-16 py-10 px-6">
           <CategoryCard
             title="headphones"
             image="/assets/shared/desktop/image-category-thumbnail-headphones.png"
@@ -30,7 +32,7 @@ const Home: NextPage = () => {
             title="earphones"
             image="/assets/shared/desktop/image-category-thumbnail-earphones.png"
           />
-        </section>
+        </section> */}
         <section className="px-6">
           <AdsProducts
             className="h-[600px] bg-brown px-6 text-white"

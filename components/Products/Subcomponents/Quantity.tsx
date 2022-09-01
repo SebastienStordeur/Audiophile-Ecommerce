@@ -1,10 +1,33 @@
 import React, { useState } from "react";
 import Input from "../../UI/Input";
 import Button from "../../UI/Button";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../../store/cart/cart";
 
-const Quantity: React.FC = () => {
-  const [quantity, setQuantity] = useState<number>(1);
-  const changeHandler = (event: React.FormEvent<HTMLInputElement>) => {};
+interface IQuantity {
+  name: string;
+  price: number;
+  id: string;
+}
+
+const Quantity: React.FC<IQuantity> = (props) => {
+  const dispatch = useDispatch();
+  const [quantity, setQuantity] = useState<any>(1);
+  const changeHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    setQuantity(event.currentTarget.value);
+  };
+
+  console.log(props.price);
+
+  const addItemHandler = () => {
+    dispatch(
+      cartActions.addItemToCart({
+        id: props.id,
+        name: props.name,
+        price: props.price,
+      })
+    );
+  };
   return (
     <div className="flex mt-8 mb-20">
       <Input
@@ -17,6 +40,7 @@ const Quantity: React.FC = () => {
       <Button
         className="bg-brown text-white lg:ml-4 hover:bg-opacity-50"
         label="Add do cart"
+        onClick={addItemHandler}
       >
         Add to cart
       </Button>

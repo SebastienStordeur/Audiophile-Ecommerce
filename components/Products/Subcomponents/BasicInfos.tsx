@@ -5,6 +5,7 @@ interface IBasicInfos {
   name: string;
   description: string;
   price: number;
+  id: string;
 }
 
 const BasicInfos: React.FC<IBasicInfos> = (props) => {
@@ -17,7 +18,7 @@ const BasicInfos: React.FC<IBasicInfos> = (props) => {
         {props.description}
       </p>
       <p className="font-bold leading-6 text-lg">{`$ ${props.price}`}</p>
-      <Quantity />
+      <Quantity name={props.name} price={props.price} id={props.id} />
     </div>
   );
 };

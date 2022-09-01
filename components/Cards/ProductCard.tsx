@@ -14,10 +14,10 @@ interface CategoryCardI {
   };
 }
 
-const CategoryCard: React.FC<CategoryCardI> = (props) => {
+const ProductCard: React.FC<CategoryCardI> = (props) => {
   return (
     <Card className="lg:flex lg:even:flex-row-reverse">
-      <div className="h-[352px] text-center rounded-lg mx-6 bg-grey relative mt-16 overflow-hidden lg:w-[540px] lg:h-[560px]">
+      <div className="h-[352px] text-center rounded-lg mx-6 bg-grey relative mt-16 overflow-hidden lg:w-[540px] lg:h-[560px] lg:mx-0">
         <picture>
           <source
             srcSet={`${props.data.product_image.split(" ")[0]}/desktop/${
@@ -40,7 +40,7 @@ const CategoryCard: React.FC<CategoryCardI> = (props) => {
           />
         </picture>
       </div>
-      <div className="lg:w-3/6 lg:mt-40 lg:text-left">
+      <div className="lg:w-3/6 lg:mt-40 lg:text-left lg:odd:mt-20">
         {/* <h3 className="uppercase font-bold text-[28px]">New product</h3> */}
         <h2 className="text-[28px] font-bold leading-9 uppercase mt-8">
           {props.data.name}
@@ -61,4 +61,4 @@ const CategoryCard: React.FC<CategoryCardI> = (props) => {
   );
 };
 
-export default CategoryCard;
+export default ProductCard;

@@ -13,7 +13,7 @@ const Headphones: React.FC = () => {
     <>
       <Header />
       <Main>
-        <Section className="grid grid-cols-1 gap-28">
+        <Section className="grid grid-cols-1 gap-28 ">
           {data.headphones.map((headphone) => {
             return <ProductCard data={headphone} key={headphone.id} />;
           })}

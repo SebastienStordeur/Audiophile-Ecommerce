@@ -4,6 +4,7 @@ interface ButtonI {
   children: React.ReactNode;
   className: string;
   label: string;
+  onClick?: () => void;
 }
 
 const Button: React.FC<ButtonI> = (props) => {
@@ -13,6 +14,7 @@ const Button: React.FC<ButtonI> = (props) => {
         props.className || ""
       }`}
       aria-label={props.label}
+      onClick={props.onClick}
     >
       {props.children}
     </button>
