@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import data from "../../data/data.json";
 
 import Footer from "../../components/Layout/Footer/Footer";
 import Header from "../../components/Layout/Header/Header";
 import Main from "../../components/Layout/Main/Main";
+import BestGear from "../../components/Cards/BestGear";
+import Section from "../../components/Layout/Section/Section";
+import ProductCard from "../../components/Cards/ProductCard";
 
 const Earphones: React.FC = () => {
   const [earphones, setEarphones] = useState([]);
 
-  useEffect(() => {
-    axios.get("url").then((res) => {
-      console.log(res.data.documents);
-      return setEarphones(res.data.documents);
-    });
-  }, []);
   return (
     <React.Fragment>
       <Header />
       <Main>
-        <h1></h1>
+        <Section className="grid grid-cols-1 gap-28">
+          {data.earphones.map((earphone) => {
+            return <ProductCard data={earphone} key={earphone.id} />;
+          })}
+        </Section>
+        <BestGear />
       </Main>
       <Footer />
     </React.Fragment>

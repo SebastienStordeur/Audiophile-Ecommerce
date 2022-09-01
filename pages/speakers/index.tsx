@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
+import data from "../../data/data.json";
 
 import Footer from "../../components/Layout/Footer/Footer";
 import Header from "../../components/Layout/Header/Header";
 import Main from "../../components/Layout/Main/Main";
+import Section from "../../components/Layout/Section/Section";
+import ProductCard from "../../components/Cards/ProductCard";
+import BestGear from "../../components/Cards/BestGear";
 
 const Speakers: React.FC = () => {
-  const [speakers, setSpeakers] = useState([]);
-
-  useEffect(() => {
-    axios.get("url").then((res) => {
-      console.log(res.data.documents);
-      return setSpeakers(res.data.documents);
-    });
-  }, []);
   return (
     <React.Fragment>
       <Header />
       <Main>
-        <h1></h1>
+        <Section className="grid grid-cols-1 gap-28">
+          {data.speakers.map((speaker) => {
+            return <ProductCard data={speaker} key={speaker.id} />;
+          })}
+        </Section>
+        <BestGear />
       </Main>
       <Footer />
     </React.Fragment>

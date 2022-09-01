@@ -62,7 +62,7 @@
           "name": "3.5mm 5m Audio Cable"
         }
       ],
-      "product_image": "/assets/product-xx99-mark-one-headphones/mobile/image-product.jpg",
+      "product_image": "/assets/product-xx99-mark-one-headphones/ /image-product.jpg",
       "images" : [
           "/assets/product-xx99-mark-one-headphones/mobile/image-gallery-1.jpg",
           "/assets/product-xx99-mark-one-headphones/mobile/image-gallery-2.jpg",       
@@ -95,7 +95,7 @@
           "name": "3.5mm 5m Audio Cable"
         }
       ],
-      "product_image": "/assets/product-xx59-headphones/mobile/image-product.jpg",
+      "product_image": "/assets/product-xx59-headphones/ /image-product.jpg",
       "images" : [
         "/assets/product-xx59-headphones/mobile/image-gallery-1.jpg",       
         "/assets/product-xx59-headphones/mobile/image-gallery-2.jpg",
@@ -134,11 +134,11 @@
           "name": "Travel Pouch"
         }
       ],
-      "product_image": "/assets/product-xx59-headphones/mobile/image-product.jpg",
+      "product_image": "/assets/product-yx1-earphones/ /image-product.jpg",
       "images" : [
-        "/assets/product-yx1-earphones/mobile/image-gallery-1.jpg",       
-        "/assets/product-yx1-earphones/mobile/image-gallery-2.jpg",
-        "/assets/product-yx1-earphones/mobile/image-gallery-3.jpg"
+        "/assets/product-yx1-earphones/ /image-gallery-1.jpg",       
+        "/assets/product-yx1-earphones/ /image-gallery-2.jpg",
+        "/assets/product-yx1-earphones/ /image-gallery-3.jpg"
       ]
     }
   ],
@@ -173,11 +173,11 @@
           "name": "10m Optical Cable"
         }
       ],
-      "product_image": "/assets/product-xx59-headphones/mobile/image-product.jpg",
+      "product_image": "/assets/product-zx9-speaker/ /image-product.jpg",
       "images" : [
-        "/assets/product-zx9-speaker/mobile/image-gallery-1.jpg",       
-        "/assets/product-zx9-speaker/mobile/image-gallery-2.jpg",
-        "/assets/product-zx9-speaker/mobile/image-gallery-3.jpg"
+        "/assets/product-zx9-speaker/ /image-gallery-1.jpg",       
+        "/assets/product-zx9-speaker/ /image-gallery-2.jpg",
+        "/assets/product-zx9-speaker/ /image-gallery-3.jpg"
       ]
     },
     {
@@ -210,11 +210,11 @@
           "name": "7.5m Optical Cable"
         }
       ],
-      "product_image": "/assets/product-xx59-headphones/mobile/image-product.jpg",
+      "product_image": "/assets/product-zx7-speaker/ /image-product.jpg",
       "images" : [
-        "/assets/product-zx7-speaker/mobile/image-gallery-1.jpg",
-        "/assets/product-zx7-speaker/mobile/image-gallery-2.jpg",
-        "/assets/product-zx7-speaker/mobile/image-gallery-3.jpg"
+        "/assets/product-zx7-speaker/ /image-gallery-1.jpg",
+        "/assets/product-zx7-speaker/ /image-gallery-2.jpg",
+        "/assets/product-zx7-speaker/ /image-gallery-3.jpg"
       ]
     }
   ]

@@ -9,7 +9,6 @@ import Section from "../../components/Layout/Section/Section";
 import data from "../../data/data.json";
 
 const Headphones: React.FC = () => {
-  console.log(data.headphones);
   return (
     <>
       <Header />
