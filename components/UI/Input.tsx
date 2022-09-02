@@ -1,13 +1,15 @@
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 interface InputI {
   type?: string;
   className?: string;
   id: string;
   value: string | number;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur: () => void;
-  placeholder: string;
+  onChange: (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => void | Dispatch<SetStateAction<number>>;
+  onBlur?: () => void;
+  placeholder?: string;
 }
 
 const Input: React.FC<InputI> = (props) => {

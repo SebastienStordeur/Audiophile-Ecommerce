@@ -16,7 +16,7 @@ interface CategoryCardI {
 
 const ProductCard: React.FC<CategoryCardI> = (props) => {
   return (
-    <Card className="lg:flex lg:even:flex-row-reverse">
+    <Card className="lg:flex lg:even:flex-row-reverse lg:mb-10 lg:px-10">
       <div className="h-[352px] text-center rounded-lg mx-6 bg-grey relative mt-16 overflow-hidden lg:w-[540px] lg:h-[560px] lg:mx-0">
         <picture>
           <source
@@ -36,11 +36,11 @@ const ProductCard: React.FC<CategoryCardI> = (props) => {
               props.data.product_image.split(" ")[1]
             }`}
             alt={props.data.name}
-            className="absolute h-full w-full object-fill md:w-56 mx-auto lg:w-full"
+            className="absolute h-full w-full object-fill md:object-contain md:scale-[1.75] lg:scale-[1] mx-auto lg:w-full"
           />
         </picture>
       </div>
-      <div className="lg:w-3/6 lg:mt-40 lg:text-left lg:odd:mt-20">
+      <div className="lg:w-3/6 lg:mt-40 lg:text-left lg:odd:mt-20 md:mb-12 max-w-[1110px] mx-6">
         {/* <h3 className="uppercase font-bold text-[28px]">New product</h3> */}
         <h2 className="text-[28px] font-bold leading-9 uppercase mt-8">
           {props.data.name}

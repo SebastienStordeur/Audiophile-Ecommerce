@@ -4,7 +4,7 @@ import Card from "../UI/Card";
 
 const BestGear: React.FC = () => {
   return (
-    <Section className="my-28 mx-6 md:mx-10 lg:mx-40 max-w-[1110px] xl:mx-auto">
+    <Section className="my-28 mx-6 md:mx-10 lg:mx-10 max-w-[1110px] xl:mx-auto">
       <Card className="lg:flex lg:flex-row-reverse lg:h-[588px]">
         <div className="w-full h-[300px] relative rounded-xl overflow-hidden lg:h-full lg:w-full">
           <picture>
@@ -27,7 +27,7 @@ const BestGear: React.FC = () => {
           <h3 className="uppercase mt-10 font-bold text-[28px] leading-9 md:text-[40px] md:mx-20 md:leading-10 lg:mx-0">
             Bringing you the <span className="text-brown">best</span> audio gear
           </h3>
-          <p className="mt-8 px-1 opacity-50 font-medium text-[15px]  mix-blend-normal">
+          <p className="mt-8 px-1 opacity-50 font-medium text-[15px] mix-blend-normal">
             Located at the heart of New York City, Audiophile is the premier
             store for high end headphones, earphones, speakers, and audio
             accessories. We have a large showroom and luxury demonstration rooms

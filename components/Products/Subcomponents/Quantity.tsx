@@ -12,12 +12,10 @@ interface IQuantity {
 
 const Quantity: React.FC<IQuantity> = (props) => {
   const dispatch = useDispatch();
-  const [quantity, setQuantity] = useState<any>(1);
+  const [quantity, setQuantity] = useState<number>(1);
   const changeHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    setQuantity(event.currentTarget.value);
+    setQuantity(parseInt(event.currentTarget.value));
   };
-
-  console.log(props.price);
 
   const addItemHandler = () => {
     dispatch(
@@ -25,6 +23,7 @@ const Quantity: React.FC<IQuantity> = (props) => {
         id: props.id,
         name: props.name,
         price: props.price,
+        quantity,
       })
     );
   };
@@ -32,7 +31,7 @@ const Quantity: React.FC<IQuantity> = (props) => {
     <div className="flex mt-8 mb-20">
       <Input
         type="number"
-        className="w-[120px] h-12 px-2 bg-grey text-center font-bold text-[13px]"
+        className="w-[120px] h-12 px-2 bg-grey text-center font-bold text-[13px] pl-6"
         id="quantity"
         value={quantity}
         onChange={changeHandler}
