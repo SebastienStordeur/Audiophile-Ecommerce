@@ -5,6 +5,7 @@ import { RootState } from "../../store/store";
 import { cartActions } from "../../store/cart/cart";
 import Button from "../UI/Button";
 import Article from "./Article";
+import Link from "next/link";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ const Cart = () => {
         </span>
         <span className="font-bold text-lg">${}</span>
         <Button className="bg-brown w-full" label="Checkout">
-          Checkout
+          <Link href="/checkout">Checkout</Link>
         </Button>
       </div>
     </div>

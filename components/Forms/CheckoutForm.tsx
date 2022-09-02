@@ -2,11 +2,24 @@ import React from "react";
 import Input from "../UI/Input";
 import useInput from "../../hook/useInput";
 import InputValidator from "./InputValidator";
+import { off } from "process";
+import { CheckoutCart } from "../Cart/CheckoutCart";
 
 const letterRegex = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
+const emailRegex =
+  /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+const phoneRegex =
+  /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+
 const isNotEmpty: any = (value: string) => value.trim() !== "";
-const isValidName: (value: string) => boolean = (value: string) =>
+const isValidName: any = (value: string) =>
   letterRegex.test(value) && isNotEmpty && value.length >= 3;
+const isValidEmail: any = (value: string) => {
+  emailRegex.test(value) && isNotEmpty;
+};
+const isValidPhone: any = (value: string) => {
+  phoneRegex.test(value) && isNotEmpty;
+};
 
 const CheckoutForm: React.FC = () => {
   const {
@@ -25,7 +38,7 @@ const CheckoutForm: React.FC = () => {
     valueChangeHandler: emailChangeHandler,
     inputBlurHandler: emailBlurHandler,
     reset: resetEmailInput,
-  } = useInput(isValidName);
+  } = useInput(isValidEmail);
   const {
     value: enteredPhone,
     isValid: enteredPhoneIsValid,
@@ -33,7 +46,7 @@ const CheckoutForm: React.FC = () => {
     valueChangeHandler: phoneChangeHandler,
     inputBlurHandler: phoneBlurHandler,
     reset: resetPhoneInput,
-  } = useInput(isValidName);
+  } = useInput(isValidPhone);
   const {
     value: enteredAddress,
     isValid: enteredAddressIsValid,
@@ -41,7 +54,7 @@ const CheckoutForm: React.FC = () => {
     valueChangeHandler: addressChangeHandler,
     inputBlurHandler: addressBlurHandler,
     reset: resetAddressInput,
-  } = useInput(isValidName);
+  } = useInput(isNotEmpty);
   const {
     value: enteredZip,
     isValid: enteredZipIsValid,
@@ -49,7 +62,7 @@ const CheckoutForm: React.FC = () => {
     valueChangeHandler: zipChangeHandler,
     inputBlurHandler: zipBlurHandler,
     reset: resetZipInput,
-  } = useInput(isValidName);
+  } = useInput(isNotEmpty);
   const {
     value: enteredCity,
     isValid: enteredCityIsValid,
@@ -66,202 +79,175 @@ const CheckoutForm: React.FC = () => {
     inputBlurHandler: countryBlurHandler,
     reset: resetCountryInput,
   } = useInput(isValidName);
-  const {
-    value: enteredEmoneynumber,
-    isValid: enteredEmoneynumberIsValid,
-    hasError: emoneynumberInputHasError,
-    valueChangeHandler: emoneynumberChangeHandler,
-    inputBlurHandler: emoneynumberBlurHandler,
-    reset: resetEmoneynumberInput,
-  } = useInput(isValidName);
-  const {
-    value: enteredEmoneypinnumber,
-    isValid: enteredEmoneynumberpinIsValid,
-    hasError: emoneynumberpinInputHasError,
-    valueChangeHandler: emoneynumberpinChangeHandler,
-    inputBlurHandler: emoneynumberpinBlurHandler,
-    reset: resetEmoneynumberpinInput,
-  } = useInput(isValidName);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {};
+  let formIsValid: boolean = false;
+
+  if (
+    enteredNameIsValid &&
+    enteredEmailIsValid &&
+    enteredPhoneIsValid &&
+    enteredAddressIsValid &&
+    enteredZipIsValid &&
+    enteredCityIsValid &&
+    enteredCountryIsValid
+  ) {
+    formIsValid = true;
+  }
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!formIsValid) return;
+
+    const formValues = {
+      name: enteredName,
+      email: enteredEmail,
+      phone: enteredPhone,
+      address: enteredAddress,
+      zip: enteredZip,
+      city: enteredCity,
+      country: enteredCountry,
+    };
+
+    console.log(formValues);
+    resetNameInput();
+    resetEmailInput();
+    resetPhoneInput();
+    resetAddressInput();
+    resetZipInput();
+    resetCityInput();
+    resetCountryInput();
+  };
 
   return (
-    <form className="bg-white mt-14 rounded-lg p-6" onSubmit={handleSubmit}>
-      <h1 className="uppercase font-bold text-3xl mb-8">Checkout</h1>
+    <section className="lg:flex">
+      <form
+        className="bg-white w-full mt-14 rounded-lg p-6"
+        onSubmit={handleSubmit}
+      >
+        <h1 className="uppercase font-bold text-3xl mb-8">Checkout</h1>
 
-      <h3 className="uppercase text-brown font-bold text-[13px] mb-4">
-        Billing details
-      </h3>
-      <div className="grid gap-6 md:grid-cols-2">
-        <InputValidator>
-          <label htmlFor="name" className="font-bold text-xs mb-2.5">
-            Name
-          </label>
-          <Input
-            id="name"
-            className="border-grey border-2 h-14 px-6 rounded-lg"
-            value={enteredName}
-            onChange={nameChangeHandler}
-            onBlur={nameBlurHandler}
-            placeholder="Alexei Ward"
-          />
-        </InputValidator>
-        <InputValidator>
-          <label htmlFor="email" className="font-bold text-xs mb-2.5">
-            Email address
-          </label>
-          <Input
-            className="border-grey border-2 h-14 px-6 rounded-lg"
-            id="email"
-            type="email"
-            value={enteredEmail}
-            onChange={emailChangeHandler}
-            onBlur={emailBlurHandler}
-            placeholder="alexei@mail.com"
-          />
-        </InputValidator>
-        <InputValidator>
-          <label htmlFor="phone" className="font-bold text-xs mb-2.5">
-            Phone Number
-          </label>
-          <Input
-            className="border-grey border-2 h-14 px-6 rounded-lg"
-            id="phone"
-            type="tel"
-            value={enteredPhone}
-            onChange={phoneChangeHandler}
-            onBlur={phoneBlurHandler}
-            placeholder="+1 202-555-0136"
-          />
-        </InputValidator>
-      </div>
+        <h3 className="uppercase text-brown font-bold text-[13px] mb-4">
+          Billing details
+        </h3>
+        <div className="grid gap-6 md:grid-cols-2">
+          <InputValidator>
+            <label htmlFor="name" className="font-bold text-xs mb-2.5">
+              Name
+            </label>
+            <Input
+              id="name"
+              className="border-grey border-2 h-14 px-6 rounded-lg"
+              value={enteredName}
+              onChange={nameChangeHandler}
+              onBlur={nameBlurHandler}
+              placeholder="Alexei Ward"
+            />
+            {nameInputHasError && <p>Error</p>}
+          </InputValidator>
+          <InputValidator>
+            <label htmlFor="email" className="font-bold text-xs mb-2.5">
+              Email address
+            </label>
+            <Input
+              className="border-grey border-2 h-14 px-6 rounded-lg"
+              id="email"
+              type="email"
+              value={enteredEmail}
+              onChange={emailChangeHandler}
+              onBlur={emailBlurHandler}
+              placeholder="alexei@mail.com"
+            />
+            {emailInputHasError && <p>Error</p>}
+          </InputValidator>
+          <InputValidator>
+            <label htmlFor="phone" className="font-bold text-xs mb-2.5">
+              Phone Number
+            </label>
+            <Input
+              className="border-grey border-2 h-14 px-6 rounded-lg"
+              id="phone"
+              type="tel"
+              value={enteredPhone}
+              onChange={phoneChangeHandler}
+              onBlur={phoneBlurHandler}
+              placeholder="+1 202-555-0136"
+            />
+            {phoneInputHasError && <p>Error</p>}
+          </InputValidator>
+        </div>
 
-      <h3 className="uppercase text-brown font-bold text-[13px] mt-8 mb-4">
-        Shipping Info
-      </h3>
-      <div className="grid gap-6 md:grid-cols-2">
-        <InputValidator className="md:col-start-1 md:col-end-3">
-          <label htmlFor="address" className="font-bold text-xs mb-2.5">
-            Your Address
-          </label>
-          <Input
-            id="address"
-            className="border-grey border-2 h-14 px-6 rounded-lg"
-            type="text"
-            value={enteredAddress}
-            onChange={addressChangeHandler}
-            onBlur={addressBlurHandler}
-            placeholder="1137 Williams Avenue"
-          />
-        </InputValidator>
+        <h3 className="uppercase text-brown font-bold text-[13px] mt-8 mb-4">
+          Shipping Info
+        </h3>
+        <div className="grid gap-6 md:grid-cols-2">
+          <InputValidator className="md:col-start-1 md:col-end-3">
+            <label htmlFor="address" className="font-bold text-xs mb-2.5">
+              Your Address
+            </label>
+            <Input
+              id="address"
+              className="border-grey border-2 h-14 px-6 rounded-lg"
+              type="text"
+              value={enteredAddress}
+              onChange={addressChangeHandler}
+              onBlur={addressBlurHandler}
+              placeholder="1137 Williams Avenue"
+            />
+            {addressInputHasError && <p>Error</p>}
+          </InputValidator>
 
-        <InputValidator>
-          <label htmlFor="zip" className="font-bold text-xs mb-2.5">
-            ZIP Code
-          </label>
-          <Input
-            id="zip"
-            className="border-grey border-2 h-14 px-6 rounded-lg"
-            type="number"
-            value={enteredZip}
-            onChange={zipChangeHandler}
-            onBlur={zipBlurHandler}
-            placeholder="10001"
-          />
-        </InputValidator>
+          <InputValidator>
+            <label htmlFor="zip" className="font-bold text-xs mb-2.5">
+              ZIP Code
+            </label>
+            <Input
+              id="zip"
+              className="border-grey border-2 h-14 px-6 rounded-lg"
+              type="number"
+              value={enteredZip}
+              onChange={zipChangeHandler}
+              onBlur={zipBlurHandler}
+              placeholder="10001"
+            />
+            {zipInputHasError && <p>Error</p>}
+          </InputValidator>
 
-        <InputValidator>
-          <label htmlFor="city" className="font-bold text-xs mb-2.5">
-            City
-          </label>
-          <Input
-            id="city"
-            className="border-grey border-2 h-14 px-6 rounded-lg"
-            type="text"
-            value={enteredCity}
-            onChange={cityChangeHandler}
-            onBlur={cityBlurHandler}
-            placeholder="New York"
-          />
-        </InputValidator>
+          <InputValidator>
+            <label htmlFor="city" className="font-bold text-xs mb-2.5">
+              City
+            </label>
+            <Input
+              id="city"
+              className="border-grey border-2 h-14 px-6 rounded-lg"
+              type="text"
+              value={enteredCity}
+              onChange={cityChangeHandler}
+              onBlur={cityBlurHandler}
+              placeholder="New York"
+            />
+            {cityInputHasError && <p>Error</p>}
+          </InputValidator>
 
-        <InputValidator>
-          <label htmlFor="country" className="font-bold text-xs mb-2.5">
-            Country
-          </label>
-          <Input
-            id="country"
-            className="border-grey border-2 h-14 px-6 rounded-lg"
-            type="text"
-            value={enteredCountry}
-            onChange={countryChangeHandler}
-            onBlur={countryBlurHandler}
-            placeholder="United States"
-          />
-        </InputValidator>
-      </div>
-
-      <h3 className="uppercase text-brown font-bold text-[13px] mt-8 mb-4">
-        Payment details
-      </h3>
-      <div className="grid gap-6">
-        <InputValidator>
-          <label htmlFor="paiement" className="font-bold text-xs mb-2.5">
-            Payment Method
-          </label>
-          <Input
-            id="paiement1"
-            className="border-grey border-2 h-14 px-6 rounded-lg"
-            type="radio"
-            /*             value={enteredCountry}
-            onChange={countryChangeHandler}
-            onBlur={countryBlurHandler}
-            placeholder="United States" */
-          />
-          <label htmlFor="paiement1">e-Money</label>
-          <Input
-            id="paiement2"
-            className="border-grey border-2 h-14 px-6 rounded-lg mt-4"
-            type="radio"
-            /*             value={enteredCountry}
-            onChange={countryChangeHandler}
-            onBlur={countryBlurHandler}
-            placeholder="United States" */
-          />
-          <label htmlFor="paiement2">Cash on Delivery</label>
-        </InputValidator>
-
-        <InputValidator>
-          <label htmlFor="emoneynumber" className="font-bold text-xs mb-2.5">
-            e-Money Number
-          </label>
-          <Input
-            id="emoneynumber"
-            className="border-grey border-2 h-14 px-6 rounded-lg"
-            type="text"
-            value={enteredCountry}
-            onChange={countryChangeHandler}
-            onBlur={countryBlurHandler}
-            placeholder="238521993"
-          />
-        </InputValidator>
-
-        <InputValidator>
-          <label htmlFor="e-pin" className="font-bold text-xs mb-2.5">
-            e-Money PIN
-          </label>
-          <Input
-            id="e-pin"
-            className="border-grey border-2 h-14 px-6 rounded-lg"
-            type="text"
-            value={enteredCountry}
-            onChange={countryChangeHandler}
-            onBlur={countryBlurHandler}
-            placeholder="6891"
-          />
-        </InputValidator>
-      </div>
-    </form>
+          <InputValidator>
+            <label htmlFor="country" className="font-bold text-xs mb-2.5">
+              Country
+            </label>
+            <Input
+              id="country"
+              className="border-grey border-2 h-14 px-6 rounded-lg"
+              type="text"
+              value={enteredCountry}
+              onChange={countryChangeHandler}
+              onBlur={countryBlurHandler}
+              placeholder="United States"
+            />
+            {countryInputHasError && <p>Error</p>}
+          </InputValidator>
+        </div>
+      </form>
+      <CheckoutCart />
+    </section>
   );
 };
 

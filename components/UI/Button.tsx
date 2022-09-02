@@ -5,6 +5,7 @@ interface ButtonI {
   className: string;
   label: string;
   onClick?: () => void;
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
 }
 
 const Button: React.FC<ButtonI> = (props) => {
@@ -15,6 +16,7 @@ const Button: React.FC<ButtonI> = (props) => {
       }`}
       aria-label={props.label}
       onClick={props.onClick}
+      type={props.type || "button"}
     >
       {props.children}
     </button>

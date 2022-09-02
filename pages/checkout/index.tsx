@@ -9,7 +9,7 @@ const CheckoutPage: NextPage = () => {
   return (
     <React.Fragment>
       <Header />
-      <section className="mx-6">
+      <section className="mx-6 max-w-[1110px] md:mx-auto">
         <CheckoutForm />
         {/*  <Cart /> */}
       </section>

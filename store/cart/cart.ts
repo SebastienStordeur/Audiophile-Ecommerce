@@ -9,11 +9,13 @@ type SliceState = {
     name: string;
   }[];
   totalQuantity: number;
+  totalPrice: number;
 };
 
 const initialState: SliceState = {
   items: [],
   totalQuantity: 0,
+  totalPrice: 0,
 };
 
 const cartSlice = createSlice({

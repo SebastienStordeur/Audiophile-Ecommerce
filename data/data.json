@@ -64,9 +64,9 @@
       ],
       "product_image": "/assets/product-xx99-mark-one-headphones/ /image-product.jpg",
       "images" : [
-          "/assets/product-xx99-mark-one-headphones/mobile/image-gallery-1.jpg",
-          "/assets/product-xx99-mark-one-headphones/mobile/image-gallery-2.jpg",       
-          "/assets/product-xx99-mark-one-headphones/mobile/image-gallery-3.jpg"
+          "/assets/product-xx99-mark-one-headphones/ /image-gallery-1.jpg",
+          "/assets/product-xx99-mark-one-headphones/ /image-gallery-2.jpg",       
+          "/assets/product-xx99-mark-one-headphones/ /image-gallery-3.jpg"
       ]
     },   
      {
@@ -97,9 +97,9 @@
       ],
       "product_image": "/assets/product-xx59-headphones/ /image-product.jpg",
       "images" : [
-        "/assets/product-xx59-headphones/mobile/image-gallery-1.jpg",       
-        "/assets/product-xx59-headphones/mobile/image-gallery-2.jpg",
-        "/assets/product-xx59-headphones/mobile/image-gallery-3.jpg"
+        "/assets/product-xx59-headphones/ /image-gallery-1.jpg",       
+        "/assets/product-xx59-headphones/ /image-gallery-2.jpg",
+        "/assets/product-xx59-headphones/ /image-gallery-3.jpg"
       ]
     }
   ],
