@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Quantity from "../../components/Products/Subcomponents/Quantity";
 
 type SliceState = {
   items: {
@@ -48,6 +47,9 @@ const cartSlice = createSlice({
         existingItem.quantity--;
         existingItem.totalPrice = existingItem.totalPrice - existingItem.price;
       }
+    },
+    resetCart(state) {
+      return (state = initialState);
     },
   },
 });

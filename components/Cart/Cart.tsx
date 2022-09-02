@@ -1,22 +1,46 @@
 import Image from "next/image";
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store/store";
+import { cartActions } from "../../store/cart/cart";
+import Button from "../UI/Button";
+import Article from "./Article";
 
 const Cart = () => {
-  const removeCartHandler = () => {};
+  const dispatch = useDispatch();
+  const items = useSelector((state: RootState) => state.cart.items);
+  const quantity = useSelector((state: RootState) => state.cart.totalQuantity);
+
+  const resetCartHandler = () => {
+    dispatch(cartActions.resetCart());
+  };
   return (
-    <div className="mx-6">
+    <div className="mx-6 min-w-[327px] h-80 fixed mt-10 bg-black inset-1/2 rounded-lg">
       <div className="flex justify-between">
-        <h3 className="uppercase font-bold text-lg tracking-wide">Cart (3)</h3>
-        <span className="cursor-pointer font-medium text-[15px] opacity-50 underline">
+        <h3 className="uppercase font-bold text-lg tracking-wide">
+          Cart <span>{quantity}</span>
+        </h3>
+        <span
+          className="cursor-pointer font-medium text-[15px] opacity-50 underline"
+          onClick={resetCartHandler}
+        >
           Remove all
         </span>
       </div>
-      <div>{/*  <div><Image src="" alt="" layout="fill"></Image></div> */}</div>
+      <div>
+        {items.map((item) => (
+          <Article key={item.id} item={item} />
+        ))}
+        {/*  <div><Image src="" alt="" layout="fill"></Image></div> */}
+      </div>
       <div className="flex justify-between">
         <span className="uppercase font-medium text-[15px] opacity-50">
-          Total
+          Total : {}
         </span>
-        <span className="font-bold text-lg">$5,396</span>
+        <span className="font-bold text-lg">${}</span>
+        <Button className="bg-brown w-full" label="Checkout">
+          Checkout
+        </Button>
       </div>
     </div>
   );

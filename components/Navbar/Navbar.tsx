@@ -1,12 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import Cart from "../Cart/Cart";
 import Categories from "../Categories/Categories";
 
 const Navbar: React.FC = () => {
   const [isMenuVisible, setIsMenuVisible] = useState<boolean>(false);
+  const [showCart, setShowCart] = useState<boolean>(false);
   const openMenuHandler = (): void => {
     setIsMenuVisible((prevValue) => !prevValue);
+  };
+
+  const showCartHandler = (): void => {
+    setShowCart((prevValue) => !prevValue);
   };
   return (
     <nav className="flex justify-between items-center w-full max-w-[1110px] mx-auto text-white">
@@ -34,12 +40,15 @@ const Navbar: React.FC = () => {
           <Link href="/earphones">Earphones</Link>
         </li>
       </ul>
-      <Image
-        src="/assets/shared/desktop/icon-cart.svg"
-        alt="Cart"
-        width={23}
-        height={20}
-      />
+      <div onClick={showCartHandler}>
+        <Image
+          src="/assets/shared/desktop/icon-cart.svg"
+          alt="Cart"
+          width={23}
+          height={20}
+        />
+      </div>
+      {showCart && <Cart />}
     </nav>
   );
 };
