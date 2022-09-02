@@ -2,7 +2,6 @@ import React from "react";
 import Input from "../UI/Input";
 import useInput from "../../hook/useInput";
 import InputValidator from "./InputValidator";
-import { off } from "process";
 import { CheckoutCart } from "../Cart/CheckoutCart";
 
 const letterRegex = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
@@ -14,12 +13,11 @@ const phoneRegex =
 const isNotEmpty: any = (value: string) => value.trim() !== "";
 const isValidName: any = (value: string) =>
   letterRegex.test(value) && isNotEmpty && value.length >= 3;
-const isValidEmail: any = (value: string) => {
+const isValidEmail: any = (value: string) =>
   emailRegex.test(value) && isNotEmpty;
-};
-const isValidPhone: any = (value: string) => {
+
+const isValidPhone: any = (value: string) =>
   phoneRegex.test(value) && isNotEmpty;
-};
 
 const CheckoutForm: React.FC = () => {
   const {
@@ -120,7 +118,7 @@ const CheckoutForm: React.FC = () => {
   };
 
   return (
-    <section className="lg:flex">
+    <section className="lg:flex mb-8">
       <form
         className="bg-white w-full mt-14 rounded-lg p-6"
         onSubmit={handleSubmit}
