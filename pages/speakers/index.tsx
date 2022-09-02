@@ -7,8 +7,10 @@ import Main from "../../components/Layout/Main/Main";
 import Section from "../../components/Layout/Section/Section";
 import ProductCard from "../../components/Cards/ProductCard";
 import BestGear from "../../components/Cards/BestGear";
+import Categories from "../../components/Categories/Categories";
+import { NextPage } from "next";
 
-const Speakers: React.FC = () => {
+const Speakers: NextPage = () => {
   return (
     <React.Fragment>
       <Header />
@@ -18,6 +20,7 @@ const Speakers: React.FC = () => {
             return <ProductCard data={speaker} key={speaker.id} />;
           })}
         </Section>
+        <Categories />
         <BestGear />
       </Main>
       <Footer />

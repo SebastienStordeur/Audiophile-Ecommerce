@@ -4,8 +4,11 @@ interface InputI {
   type?: string;
   className?: string;
   id: string;
-  value: string | number;
-  onChange: any;
+  value?: string | number;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: () => void;
+  placeholder?: string;
+  checked?: true;
 }
 
 const Input: React.FC<InputI> = (props) => {
@@ -13,9 +16,11 @@ const Input: React.FC<InputI> = (props) => {
     <input
       type={props.type || "text"}
       id={props.id}
-      className={` ${props.className || ""}`}
+      className={`placeholder:text-sm  ${props.className || ""}`}
       value={props.value}
       onChange={props.onChange}
+      placeholder={props.placeholder}
+      checked
     />
   );
 };

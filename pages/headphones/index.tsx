@@ -7,8 +7,10 @@ import ProductCard from "../../components/Cards/ProductCard";
 import Section from "../../components/Layout/Section/Section";
 
 import data from "../../data/data.json";
+import Categories from "../../components/Categories/Categories";
+import { NextPage } from "next";
 
-const Headphones: React.FC = () => {
+const Headphones: NextPage = () => {
   return (
     <>
       <Header />
@@ -18,6 +20,7 @@ const Headphones: React.FC = () => {
             return <ProductCard data={headphone} key={headphone.id} />;
           })}
         </Section>
+        <Categories />
         <BestGear />
       </Main>
       <Footer />

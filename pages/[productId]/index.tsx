@@ -7,6 +7,7 @@ import Main from "../../components/Layout/Main/Main";
 import ProductInfos from "../../components/Products/ProductInfos";
 import BestGear from "../../components/Cards/BestGear";
 import data from "../../data/data.json";
+import Categories from "../../components/Categories/Categories";
 
 const Product: React.FC = () => {
   const router = useRouter();
@@ -26,6 +27,7 @@ const Product: React.FC = () => {
       <Header />
       <Main>
         {product && <ProductInfos data={product} />}
+        <Categories />
         <BestGear />
       </Main>
       <Footer />

@@ -7,8 +7,10 @@ import Main from "../../components/Layout/Main/Main";
 import BestGear from "../../components/Cards/BestGear";
 import Section from "../../components/Layout/Section/Section";
 import ProductCard from "../../components/Cards/ProductCard";
+import Categories from "../../components/Categories/Categories";
+import { NextPage } from "next";
 
-const Earphones: React.FC = () => {
+const Earphones: NextPage = () => {
   const [earphones, setEarphones] = useState([]);
 
   return (
@@ -20,6 +22,7 @@ const Earphones: React.FC = () => {
             return <ProductCard data={earphone} key={earphone.id} />;
           })}
         </Section>
+        <Categories />
         <BestGear />
       </Main>
       <Footer />
