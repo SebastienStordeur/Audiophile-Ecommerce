@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import Input from "../UI/Input";
 import useInput from "../../hook/useInput";
 import InputValidator from "./InputValidator";
-import { CheckoutCart } from "../Cart/CheckoutCart";
+import CheckoutCart from "../Cart/CheckoutCart";
+import { useDispatch, useSelector } from "react-redux";
+import { cartActions } from "../../store/cart/cart";
+import { RootState } from "../../store/store";
 
 const letterRegex = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
 const emailRegex =
@@ -20,6 +23,8 @@ const isValidPhone: any = (value: string) =>
   phoneRegex.test(value) && isNotEmpty;
 
 const CheckoutForm: React.FC = () => {
+  const dispatch = useDispatch();
+  const items = useSelector((state: RootState) => state.cart.items);
   const {
     value: enteredName,
     isValid: enteredNameIsValid,
@@ -89,7 +94,8 @@ const CheckoutForm: React.FC = () => {
     enteredAddressIsValid &&
     enteredZipIsValid &&
     enteredCityIsValid &&
-    enteredCountryIsValid
+    enteredCountryIsValid &&
+    items.length > 0
   ) {
     formIsValid = true;
   }
@@ -119,6 +125,7 @@ const CheckoutForm: React.FC = () => {
     resetCountryInput();
 
     setIsCheckoutDone(true);
+    dispatch(cartActions.resetCart());
   };
 
   return (

@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import Cart from "../Cart/Cart";
 import Categories from "../Categories/Categories";
+import MobileNavbar from "./MobileNavbar";
 
 const Navbar: React.FC = () => {
   const [isMenuVisible, setIsMenuVisible] = useState<boolean>(false);
@@ -16,6 +17,7 @@ const Navbar: React.FC = () => {
   };
   return (
     <nav className="flex justify-between items-center w-full max-w-[1110px] mx-auto text-white">
+      {isMenuVisible && <MobileNavbar />}
       <div className="cursor-pointer md:hidden">
         <Image
           src="/assets/shared/tablet/icon-hamburger.svg"
@@ -40,7 +42,7 @@ const Navbar: React.FC = () => {
           <Link href="/earphones">Earphones</Link>
         </li>
       </ul>
-      <div onClick={showCartHandler}>
+      <div onClick={showCartHandler} className="cursor-pointer">
         <Image
           src="/assets/shared/desktop/icon-cart.svg"
           alt="Cart"

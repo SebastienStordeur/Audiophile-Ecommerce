@@ -9,8 +9,7 @@ interface ICheckoutCart {
   done: boolean;
 }
 
-export const CheckoutCart: React.FC<ICheckoutCart> = (props) => {
-  console.log(props);
+const CheckoutCart: React.FC<ICheckoutCart> = (props) => {
   const items = useSelector((state: RootState) => state.cart.items);
   let price: number = 0;
 
@@ -62,3 +61,5 @@ export const CheckoutCart: React.FC<ICheckoutCart> = (props) => {
     </section>
   );
 };
+
+export default React.memo(CheckoutCart);
