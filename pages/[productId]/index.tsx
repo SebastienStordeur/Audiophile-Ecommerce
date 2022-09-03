@@ -8,6 +8,7 @@ import ProductInfos from "../../components/Products/ProductInfos";
 import BestGear from "../../components/Cards/BestGear";
 import data from "../../data/data.json";
 import Categories from "../../components/Categories/Categories";
+import Head from "next/head";
 
 const Product: React.FC = () => {
   const router = useRouter();
@@ -24,6 +25,10 @@ const Product: React.FC = () => {
 
   return (
     <React.Fragment>
+      <Head>
+        <title>Audiophile - {product.name}</title>
+        <meta name="description" content={`${product.name} page`} />
+      </Head>
       <Header />
       <Main>
         {product && <ProductInfos data={product} />}

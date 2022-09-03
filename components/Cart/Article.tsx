@@ -16,7 +16,6 @@ interface IArticle {
 }
 
 const Article: React.FC<IArticle> = (props) => {
-  console.log(props.item);
   const dispatch = useDispatch();
   const currentItem =
     data.earphones.find((earphone) => earphone.id === props.item.id) ||

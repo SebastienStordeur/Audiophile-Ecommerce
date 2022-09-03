@@ -18,11 +18,20 @@ const initialState: SliceState = {
   totalPrice: 0,
 };
 
+interface IItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  totalPrice: string;
+}
+
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItemToCart(state, action: PayloadAction<any>) {
+    addItemToCart(state, action: PayloadAction<IItem>) {
+      console.log(action);
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);
       state.totalQuantity++;
@@ -41,16 +50,19 @@ const cartSlice = createSlice({
       }
       localStorage.setItem("cart", JSON.stringify(state.items));
     },
-    removeItemFromCart(state, action: PayloadAction<any>) {
+    removeItemFromCart(state, action: PayloadAction<IItem>) {
       const id = action.payload;
-      const existingItem: any = state.items.find((item) => item.id === id);
+      const existingItem: any = state.items.find(
+        (item: { id: any }) => item.id === id
+      );
       state.totalQuantity--;
       if (existingItem.quantity === 1) {
-        state.items = state.items.filter((item) => item.id !== id);
+        state.items = state.items.filter((item: { id: any }) => item.id !== id);
       } else {
         existingItem.quantity--;
         existingItem.totalPrice = existingItem.totalPrice - existingItem.price;
       }
+      localStorage.setItem("cart", JSON.stringify(state.items));
     },
     resetCart(state) {
       return (state = initialState);

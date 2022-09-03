@@ -12,6 +12,10 @@ import Categories from "../components/Categories/Categories";
 const Home: NextPage = () => {
   return (
     <React.Fragment>
+      <Head>
+        <title>Audiophile - Home</title>
+        <meta name="description" content="Home page" />
+      </Head>
       <Header />
       <Main>
         <SubHeader />

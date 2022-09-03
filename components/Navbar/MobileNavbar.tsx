@@ -1,9 +1,16 @@
 import React from "react";
 import Link from "next/link";
 
-const MobileNavbar: React.FC = () => {
+interface IMobileNavbar {
+  onClick: () => void;
+}
+
+const MobileNavbar: React.FC<IMobileNavbar> = (props) => {
   return (
-    <ul className="absolute w-full h-auto bg-black text-white font-bold px-8 left-0 top-20 z-50 md:hidden">
+    <ul
+      className="absolute w-full h-auto bg-black text-white font-bold px-8 left-0 top-20 z-50 md:hidden"
+      onClick={props.onClick}
+    >
       <li className="h-12">
         <Link href="/">Home</Link>
       </li>

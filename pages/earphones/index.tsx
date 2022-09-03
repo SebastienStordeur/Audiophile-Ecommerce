@@ -9,12 +9,15 @@ import Section from "../../components/Layout/Section/Section";
 import ProductCard from "../../components/Cards/ProductCard";
 import Categories from "../../components/Categories/Categories";
 import { NextPage } from "next";
+import Head from "next/head";
 
 const Earphones: NextPage = () => {
-  const [earphones, setEarphones] = useState([]);
-
   return (
     <React.Fragment>
+      <Head>
+        <title>Audiophile - Earphones</title>
+        <meta name="description" content="Earphones page" />
+      </Head>
       <Header />
       <Main>
         <Section className="grid grid-cols-1 gap-28">
