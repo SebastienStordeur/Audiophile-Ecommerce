@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "../UI/Input";
 import useInput from "../../hook/useInput";
 import InputValidator from "./InputValidator";
@@ -78,6 +78,8 @@ const CheckoutForm: React.FC = () => {
     reset: resetCountryInput,
   } = useInput(isValidName);
 
+  const [isCheckoutDone, setIsCheckoutDone] = useState<boolean>(false);
+
   let formIsValid: boolean = false;
 
   if (
@@ -115,6 +117,8 @@ const CheckoutForm: React.FC = () => {
     resetZipInput();
     resetCityInput();
     resetCountryInput();
+
+    setIsCheckoutDone(true);
   };
 
   return (
@@ -123,128 +127,132 @@ const CheckoutForm: React.FC = () => {
         className="bg-white w-full mt-14 rounded-lg p-6"
         onSubmit={handleSubmit}
       >
-        <h1 className="uppercase font-bold text-3xl mb-8">Checkout</h1>
+        <div className="lg:flex">
+          <div className="lg:w-11/12">
+            <h1 className="uppercase font-bold text-3xl mb-8">Checkout</h1>
 
-        <h3 className="uppercase text-brown font-bold text-[13px] mb-4">
-          Billing details
-        </h3>
-        <div className="grid gap-6 md:grid-cols-2">
-          <InputValidator>
-            <label htmlFor="name" className="font-bold text-xs mb-2.5">
-              Name
-            </label>
-            <Input
-              id="name"
-              className="border-grey border-2 h-14 px-6 rounded-lg"
-              value={enteredName}
-              onChange={nameChangeHandler}
-              onBlur={nameBlurHandler}
-              placeholder="Alexei Ward"
-            />
-            {nameInputHasError && <p>Error</p>}
-          </InputValidator>
-          <InputValidator>
-            <label htmlFor="email" className="font-bold text-xs mb-2.5">
-              Email address
-            </label>
-            <Input
-              className="border-grey border-2 h-14 px-6 rounded-lg"
-              id="email"
-              type="email"
-              value={enteredEmail}
-              onChange={emailChangeHandler}
-              onBlur={emailBlurHandler}
-              placeholder="alexei@mail.com"
-            />
-            {emailInputHasError && <p>Error</p>}
-          </InputValidator>
-          <InputValidator>
-            <label htmlFor="phone" className="font-bold text-xs mb-2.5">
-              Phone Number
-            </label>
-            <Input
-              className="border-grey border-2 h-14 px-6 rounded-lg"
-              id="phone"
-              type="tel"
-              value={enteredPhone}
-              onChange={phoneChangeHandler}
-              onBlur={phoneBlurHandler}
-              placeholder="+1 202-555-0136"
-            />
-            {phoneInputHasError && <p>Error</p>}
-          </InputValidator>
-        </div>
+            <h3 className="uppercase text-brown font-bold text-[13px] mb-4">
+              Billing details
+            </h3>
+            <div className="grid gap-6 md:grid-cols-2">
+              <InputValidator>
+                <label htmlFor="name" className="font-bold text-xs mb-2.5">
+                  Name
+                </label>
+                <Input
+                  id="name"
+                  className="border-grey border-2 h-14 px-6 rounded-lg"
+                  value={enteredName}
+                  onChange={nameChangeHandler}
+                  onBlur={nameBlurHandler}
+                  placeholder="Alexei Ward"
+                />
+                {nameInputHasError && <p>Error</p>}
+              </InputValidator>
+              <InputValidator>
+                <label htmlFor="email" className="font-bold text-xs mb-2.5">
+                  Email address
+                </label>
+                <Input
+                  className="border-grey border-2 h-14 px-6 rounded-lg"
+                  id="email"
+                  type="email"
+                  value={enteredEmail}
+                  onChange={emailChangeHandler}
+                  onBlur={emailBlurHandler}
+                  placeholder="alexei@mail.com"
+                />
+                {emailInputHasError && <p>Error</p>}
+              </InputValidator>
+              <InputValidator>
+                <label htmlFor="phone" className="font-bold text-xs mb-2.5">
+                  Phone Number
+                </label>
+                <Input
+                  className="border-grey border-2 h-14 px-6 rounded-lg"
+                  id="phone"
+                  type="tel"
+                  value={enteredPhone}
+                  onChange={phoneChangeHandler}
+                  onBlur={phoneBlurHandler}
+                  placeholder="+1 202-555-0136"
+                />
+                {phoneInputHasError && <p>Error</p>}
+              </InputValidator>
+            </div>
 
-        <h3 className="uppercase text-brown font-bold text-[13px] mt-8 mb-4">
-          Shipping Info
-        </h3>
-        <div className="grid gap-6 md:grid-cols-2">
-          <InputValidator className="md:col-start-1 md:col-end-3">
-            <label htmlFor="address" className="font-bold text-xs mb-2.5">
-              Your Address
-            </label>
-            <Input
-              id="address"
-              className="border-grey border-2 h-14 px-6 rounded-lg"
-              type="text"
-              value={enteredAddress}
-              onChange={addressChangeHandler}
-              onBlur={addressBlurHandler}
-              placeholder="1137 Williams Avenue"
-            />
-            {addressInputHasError && <p>Error</p>}
-          </InputValidator>
+            <h3 className="uppercase text-brown font-bold text-[13px] mt-8 mb-4">
+              Shipping Info
+            </h3>
+            <div className="grid gap-6 md:grid-cols-2">
+              <InputValidator className="md:col-start-1 md:col-end-3">
+                <label htmlFor="address" className="font-bold text-xs mb-2.5">
+                  Your Address
+                </label>
+                <Input
+                  id="address"
+                  className="border-grey border-2 h-14 px-6 rounded-lg"
+                  type="text"
+                  value={enteredAddress}
+                  onChange={addressChangeHandler}
+                  onBlur={addressBlurHandler}
+                  placeholder="1137 Williams Avenue"
+                />
+                {addressInputHasError && <p>Error</p>}
+              </InputValidator>
 
-          <InputValidator>
-            <label htmlFor="zip" className="font-bold text-xs mb-2.5">
-              ZIP Code
-            </label>
-            <Input
-              id="zip"
-              className="border-grey border-2 h-14 px-6 rounded-lg"
-              type="number"
-              value={enteredZip}
-              onChange={zipChangeHandler}
-              onBlur={zipBlurHandler}
-              placeholder="10001"
-            />
-            {zipInputHasError && <p>Error</p>}
-          </InputValidator>
+              <InputValidator>
+                <label htmlFor="zip" className="font-bold text-xs mb-2.5">
+                  ZIP Code
+                </label>
+                <Input
+                  id="zip"
+                  className="border-grey border-2 h-14 px-6 rounded-lg"
+                  type="number"
+                  value={enteredZip}
+                  onChange={zipChangeHandler}
+                  onBlur={zipBlurHandler}
+                  placeholder="10001"
+                />
+                {zipInputHasError && <p>Error</p>}
+              </InputValidator>
 
-          <InputValidator>
-            <label htmlFor="city" className="font-bold text-xs mb-2.5">
-              City
-            </label>
-            <Input
-              id="city"
-              className="border-grey border-2 h-14 px-6 rounded-lg"
-              type="text"
-              value={enteredCity}
-              onChange={cityChangeHandler}
-              onBlur={cityBlurHandler}
-              placeholder="New York"
-            />
-            {cityInputHasError && <p>Error</p>}
-          </InputValidator>
+              <InputValidator>
+                <label htmlFor="city" className="font-bold text-xs mb-2.5">
+                  City
+                </label>
+                <Input
+                  id="city"
+                  className="border-grey border-2 h-14 px-6 rounded-lg"
+                  type="text"
+                  value={enteredCity}
+                  onChange={cityChangeHandler}
+                  onBlur={cityBlurHandler}
+                  placeholder="New York"
+                />
+                {cityInputHasError && <p>Error</p>}
+              </InputValidator>
 
-          <InputValidator>
-            <label htmlFor="country" className="font-bold text-xs mb-2.5">
-              Country
-            </label>
-            <Input
-              id="country"
-              className="border-grey border-2 h-14 px-6 rounded-lg"
-              type="text"
-              value={enteredCountry}
-              onChange={countryChangeHandler}
-              onBlur={countryBlurHandler}
-              placeholder="United States"
-            />
-            {countryInputHasError && <p>Error</p>}
-          </InputValidator>
+              <InputValidator>
+                <label htmlFor="country" className="font-bold text-xs mb-2.5">
+                  Country
+                </label>
+                <Input
+                  id="country"
+                  className="border-grey border-2 h-14 px-6 rounded-lg"
+                  type="text"
+                  value={enteredCountry}
+                  onChange={countryChangeHandler}
+                  onBlur={countryBlurHandler}
+                  placeholder="United States"
+                />
+                {countryInputHasError && <p>Error</p>}
+              </InputValidator>
+            </div>
+          </div>
+          <CheckoutCart done={isCheckoutDone} />
         </div>
       </form>
-      <CheckoutCart />
     </section>
   );
 };

@@ -48,7 +48,7 @@ const Navbar: React.FC = () => {
           height={20}
         />
       </div>
-      {showCart && <Cart />}
+      {showCart && <Cart onClick={showCartHandler} />}
     </nav>
   );
 };

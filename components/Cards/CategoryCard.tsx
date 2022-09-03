@@ -10,7 +10,7 @@ interface CategoryCardI {
 
 const CategoryCard: React.FC<CategoryCardI> = (props) => {
   return (
-    <Card className="bg-grey h-40 md:w-11/12 mt-20">
+    <Card className="bg-grey h-40 md:w-11/12 mt-10">
       <div className="relative w-80 h-40 mx-auto -mt-9 md:w-full">
         <Image
           src={props.image}
