@@ -25,10 +25,6 @@ const Product: React.FC = () => {
 
   return (
     <React.Fragment>
-      <Head>
-        <title>Audiophile - {product.name}</title>
-        <meta name="description" content={`${product.name} page`} />
-      </Head>
       <Header />
       <Main>
         {product && <ProductInfos data={product} />}
