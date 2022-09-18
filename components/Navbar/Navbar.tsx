@@ -3,10 +3,13 @@ import Link from "next/link";
 import React, { useState } from "react";
 import Cart from "../Cart/Cart";
 import MobileNavbar from "./MobileNavbar";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 const Navbar: React.FC = () => {
   const [isMenuVisible, setIsMenuVisible] = useState<boolean>(false);
   const [showCart, setShowCart] = useState<boolean>(false);
+  const cart = useSelector((state: RootState) => state.cart.items);
   const openMenuHandler = (): void => {
     setIsMenuVisible((prevValue) => !prevValue);
   };
@@ -48,6 +51,11 @@ const Navbar: React.FC = () => {
           width={23}
           height={20}
         />
+        {cart && (
+          <span className="absolute top-4 px-1.5 text-sm bg-brown rounded-full">
+            {cart.length}
+          </span>
+        )}
       </div>
       {showCart && <Cart onClick={showCartHandler} />}
     </nav>

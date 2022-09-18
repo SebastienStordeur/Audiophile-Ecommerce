@@ -12,8 +12,19 @@ type SliceState = {
   totalPrice: number;
 };
 
+let cart: string | undefined | null;
+let parsedCart;
+
+if (typeof window !== "undefined") {
+  cart = localStorage.getItem("cart");
+}
+
+if (cart !== undefined && cart !== null) {
+  parsedCart = JSON.parse(cart);
+}
+
 const initialState: SliceState = {
-  items: [],
+  items: cart ? parsedCart : [],
   totalQuantity: 0,
   totalPrice: 0,
 };
@@ -56,6 +67,7 @@ const cartSlice = createSlice({
       localStorage.setItem("cart", JSON.stringify(state.items));
     },
     resetCart(state) {
+      localStorage.removeItem("cart");
       return (state = initialState);
     },
   },
